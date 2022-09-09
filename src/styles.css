@@ -1,0 +1,59 @@
+
+#nav_header{
+  width:100%;
+  height: 20vh;
+  background-color: blue;
+  padding-top:25px;
+}
+#span_header{
+  font-size: 25px;
+  font-weight: bolder;
+  color:white;
+  padding: 70px 0px 20px 80px;
+}
+#badge_header{
+float:right;
+background-color: white;
+border-radius: 25px;
+width:30%;
+height:40px;
+text-align: center;
+line-height: 40px;
+}
+#qtybadge_header{
+  padding: 0 15px 0 15px;
+  border-radius:25px;
+  background-color: blue;
+  text-align:center;
+  color:white;
+}
+.introContainer{
+  margin:auto;
+  text-align: center;
+  background-color: blueviolet;
+  color:white;
+  width:75%;
+  border-radius: 25px;
+  padding:5px;
+  margin-top:5px;
+}
+.introContainer p{
+  font-size: small;
+}
+.menuItem{
+  border-style: groove;
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+}
+.menuItem2{
+  border-radius:25px;
+  padding:5px;
+  padding:  5px 8px 8px 10px;
+}
+.header_header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
+

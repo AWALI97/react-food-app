@@ -1,7 +1,7 @@
 import '../styles.css';
 const Header = (props) => {
 	function holla() {
-		console.log('holla');
+		props.raise(true);
 	}
 	return (
 		<div>

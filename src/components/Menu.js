@@ -1,24 +1,17 @@
 import styled from 'styled-components';
 import MenuItem from './MenuItem';
-const MENU = [
-	{ id: 0, name: 'Sushi', subtitle: 'Finest fish and veggies', price: 22.99 },
-	{ id: 1, name: 'Schnitzel', subtitle: 'A german specialty', price: 16.5 },
-	{ id: 2, name: 'BBQ Burger', subtitle: 'American, raw, meaty', price: 12.99 },
-	{
-		id: 3,
-		name: 'Green Bowl',
-		subtitle: 'Healthy...and green...',
-		price: 18.99,
-	},
-];
+import { useState } from 'react';
 
 const Menu = (props) => {
+	// eslint-disable-next-line
+	const [myMenu, setmyMenu] = useState(props.MENU);
+
 	function handleButton(content) {
 		props.raise(content);
 	}
 	let children = [];
 	let i = 0;
-	MENU.map((element) => {
+	myMenu.map((element) => {
 		children.push(
 			<MenuItem
 				raise={handleButton}

@@ -15,10 +15,8 @@ const MenuItem = (props) => {
 
 			<AddItem
 				className="AddItemClass"
-				price={props.item.price}
-				item={props.item.name}
+				item={props.item}
 				raise={handleButton}
-				itemId={props.item.id}
 			/>
 		</div>
 	);

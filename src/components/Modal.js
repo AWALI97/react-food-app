@@ -1,32 +1,46 @@
 import s from 'styled-components';
-import { formatSessionOrders } from '../helpers';
 import CartItem from './CartItem';
+import CartFooter from './CartFooter';
 
-const Modal = () => {
-	console.log();
-	let sess = formatSessionOrders();
+const Modal = (props) => {
 	let children = [];
-	console.log(sess);
-	let i = 0;
-	function handleButton(content) {
-		console.log('doing nothin: ', content);
-	}
-	sess.forEach((el) => {
-		children.push(
-			<CartItem raise={handleButton} key={`cart_key_${i}`} item={el}></CartItem>
-		);
-		i++;
+	let cart = props.cart.filter((el) => {
+		return el.qty !== '0';
 	});
+	function handleButton(content) {
+		props.raise(content);
+	}
+	cart.forEach((el) => {
+		children.push(
+			<CartItem
+				raise={handleButton}
+				key={`cart_key_${el.id}`}
+				item={el}
+			></CartItem>
+		);
+	});
+	function closeHandler() {
+		props.close(true);
+	}
+	function orderHandler(total) {
+		//{total: total}
+		props.order({ items: cart, ...total });
+	}
+
 	return (
 		<BackDrop>
-			<Cart>{children}</Cart>
+			<Cart>
+				{children}
+				<CartFooter raise={closeHandler} order={orderHandler} item={cart} />
+			</Cart>
 		</BackDrop>
 	);
 };
+
 let BackDrop = s.div`
   width: 100%;
   height: 300%;
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.9);
   position:absolute;
   top:0;
   z-index: 100;

@@ -34,8 +34,9 @@ line-height: 40px;
   color:white;
   width:75%;
   border-radius: 25px;
-  padding:5px;
-  margin-top:5px;
+  padding:5px;  
+  margin-top:25vh;
+  margin-bottom:10px;
 }
 .introContainer p{
   font-size: small;
@@ -52,8 +53,11 @@ line-height: 40px;
   padding:  5px 8px 8px 10px;
 }
 .header_header{
-  position:sticky;
+  position:fixed;
   top:0;
   z-index:1000;
+  width:100%;
+  
+  
 }
 

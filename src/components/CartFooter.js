@@ -1,52 +1,39 @@
 import s from 'styled-components';
-
-const AddItem = (props) => {
-	// const [qtyState, setQtyState] = useState();
-
-	function handleQty(x) {
-		let val = parseInt(props.item.qty) + parseInt(x);
-		let obj = {
-			id: props.item.id,
-			name: props.item.name,
-			val: val + ' * ' + props.item.price,
-		};
-		props.raise(obj);
-		// setQtyState((currState) => {
-		// 	return val;
-		// });
+const CartFooter = (props) => {
+	let grandTotal = 0;
+	props.item.forEach((el) => {
+		grandTotal += parseInt(el.qty) * parseFloat(el.price);
+	});
+	function closeHandler() {
+		props.raise(true);
 	}
-	function increaseBtn() {
-		handleQty(1);
-	}
-	function decreaseBtn() {
-		const el = document.getElementById(`input_${props.item.id}`);
-		if (parseInt(el.innerHTML) > 0) {
-			handleQty(-1);
-		}
+	function orderHandler() {
+		props.order({ total: grandTotal.toFixed(2) });
 	}
 	return (
 		<Div>
-			<label>Amount |</label>
-			<Input id={`input_${props.item.id}`}>{props.item.qty}</Input>
-			<Decrease onClick={decreaseBtn}>▼</Decrease>
-			<Increase onClick={increaseBtn}>⯅</Increase>
+			<S>Total: </S>
+			<S2>${grandTotal.toFixed(2)}</S2>
+			<Div2>
+				<Button
+					onClick={closeHandler}
+					style={{ marginRight: '5px', backgroundColor: 'red' }}
+				>
+					Close
+				</Button>
+				<Button onClick={orderHandler}>Order</Button>
+			</Div2>
 		</Div>
 	);
 };
-let Div = s.div`
-width:125px;
-text-align:center;
-margin-left:auto;
+let Div2 = s.div`float:right;`;
+let Div = s.div`padding:20px 10px;`;
+let S = s.span`
+font-weight:bolder;
+font-size:25px;
 `;
-
-let Input = s.span`
-width:40px;
-margin-left: 10px;
-font-weight: bolder;
-font-size: 20px;
-text-align: center;
-`;
-
+let S2 = s.span`
+font-size:25px;`;
 let Button = s.button`
 
   appearance: none;
@@ -99,12 +86,4 @@ let Button = s.button`
   box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
 }
 `;
-let Decrease = s(Button)`
-text-align: center;
-margin-right: 5px;
-background-color:red;
-
-`;
-let Increase = s(Button)`
-`;
-export default AddItem;
+export default CartFooter;

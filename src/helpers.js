@@ -19,7 +19,6 @@ export function formatSessionOrders() {
 	let arr = [];
 	for (const key in object) {
 		if (typeof object[key] === 'string' && object[key].split(' * ')[1]) {
-			const val = sessionStorage.getItem(key);
 			const num = object[key].split(' * ');
 			const qty = num[0];
 			const price = num[1];
@@ -33,3 +32,27 @@ export function formatSessionOrders() {
 	}
 	return arr;
 }
+export function initializeSessionStorage(MENU) {
+	MENU.forEach((el) => {
+		if (!sessionStorage.getItem(el.name)) {
+			sessionStorage.setItem(el.name, `0 * ${el.price}`);
+		}
+	});
+}
+
+export function initMyListToSession(myList) {
+	let object = sessionStorage;
+	for (const key in object) {
+		if (typeof object[key] === 'string' && object[key].split(' * ')[1]) {
+			const num = object[key].split(' * ');
+			const qty = num[0];
+			myList.forEach((el) => {
+				if (el.name === key) {
+					el.qty = qty;
+				}
+			});
+		}
+	}
+	return myList;
+}
+export function zeroOutMyList(MENU) {}
